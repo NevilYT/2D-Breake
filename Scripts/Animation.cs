@@ -30,5 +30,7 @@ public class Animation : MonoBehaviour
         animator.SetBool("Punch", true);
         yield return new WaitForSeconds(1.3f);
         hori = "Horizontal";
+        animator.SetBool("Punch", false);
+        animator.SetFloat("Horizontal", 0);
     }
 }

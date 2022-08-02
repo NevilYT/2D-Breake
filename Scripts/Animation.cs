@@ -6,8 +6,29 @@ public class Animation : MonoBehaviour
 {
     private float moveInput;
     public Animator animator;
+    private float _nextpunch = 0.15f;
+    private float _punchDelay = 1;
+    private string hori = "Horizontal";
+    void Start(){
+        animator = GetComponent<Animator>();
+    }
+    
     void Update()
     {
-        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        PunchAni();
+        animator.SetFloat("Horizontal", Input.GetAxis(hori));
+    }
+    void PunchAni(){
+        if(Input.GetMouseButtonDown(0) && Time.time > _nextpunch){
+            hori = "Vertical";
+            StartCoroutine(PunchAniTime());
+            _nextpunch = Time.time + _punchDelay;
+        }
+    }
+    IEnumerator PunchAniTime()
+    {
+        animator.SetBool("Punch", true);
+        yield return new WaitForSeconds(1.3f);
+        hori = "Horizontal";
     }
 }

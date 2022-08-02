@@ -10,8 +10,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpforce = 15f;
     [SerializeField] private int hp;
     public GameObject punchcoll;
+    private float PunchBack;
     public Text HPtxt;
     public Text ENtxt;
+    private float _nextpunch = 0.15f;
+    private float _punchDelay = 1;
 
     private Rigidbody2D rb;
     
@@ -70,10 +73,15 @@ public class Player : MonoBehaviour
         else if(hp == -1)hp = 0;
     }
     public void Punch(){
-        if(Input.GetKeyDown("p")){
-            punchcoll.transform.position = new Vector2(transform.position.x + 0.145f,transform.position.y-0.01f);
-            punchcoll.transform.position = new Vector2(transform.position.x,transform.position.y);
-            
+        if(Input.GetMouseButtonDown(0) && Time.time > _nextpunch){
+            StartCoroutine(PunchTime());
+            _nextpunch = Time.time + _punchDelay;
         }
+    }
+    IEnumerator PunchTime()
+    {
+        punchcoll.transform.position = new Vector2(transform.position.x + 0.145f,transform.position.y-0.01f);
+        yield return new WaitForSeconds(1.3f);
+        punchcoll.transform.position = new Vector2(transform.position.x,transform.position.y);
     }
 }

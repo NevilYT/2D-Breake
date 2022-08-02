@@ -8,10 +8,10 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpforce = 15f;
-    [SerializeField] private int hp = 10;
+    [SerializeField] private int hp;
+    public GameObject punchcoll;
     public Text HPtxt;
     public Text ENtxt;
-    
 
     private Rigidbody2D rb;
     
@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     {
         Walk();
         Stats();
+        Punch();
     }
 
     private void Run(){
@@ -67,5 +68,12 @@ public class Player : MonoBehaviour
             HPtxt.text = hp.ToString()+"/10";
         }
         else if(hp == -1)hp = 0;
+    }
+    public void Punch(){
+        if(Input.GetKeyDown("p")){
+            punchcoll.transform.position = new Vector2(transform.position.x + 0.145f,transform.position.y-0.01f);
+            punchcoll.transform.position = new Vector2(transform.position.x,transform.position.y);
+            
+        }
     }
 }

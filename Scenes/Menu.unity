@@ -1140,7 +1140,7 @@ GameObject:
   - component: {fileID: 1728384809}
   - component: {fileID: 1728384813}
   m_Layer: 5
-  m_Name: Shop (1)
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

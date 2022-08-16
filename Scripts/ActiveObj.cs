@@ -22,6 +22,5 @@ public class ActiveObj : MonoBehaviour
         ison = !ison;
         hideobj.SetActive(ison);
         onmenu.SetActive(!ison);
-        ison = !ison;
     }
 }
